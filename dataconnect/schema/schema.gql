@@ -1,0 +1,47 @@
+type User @table {
+  displayName: String!
+  email: String!
+  userType: String!
+  bio: String
+  profilePictureUrl: String
+  createdAt: Timestamp
+}
+
+type BusinessProfile @table {
+  businessName: String!
+  industry: String!
+  description: String!
+  createdAt: Timestamp
+  website: String
+  logoUrl: String
+  location: String
+  owner: User
+}
+
+type Project @table {
+  projectName: String!
+  status: String!
+  createdAt: Timestamp
+  description: String
+  technologiesUsed: [String]
+  demoUrl: String
+  githubRepoUrl: String
+  business: BusinessProfile
+}
+
+type Mentor @table {
+  expertiseAreas: [String]!
+  availability: String!
+  companyAffiliation: String
+  linkedinProfileUrl: String
+  user: User
+}
+
+type MentorshipRequest @table {
+  status: String!
+  message: String!
+  createdAt: Timestamp
+  meetingPreference: String
+  entrepreneur: User
+  mentor: Mentor
+}

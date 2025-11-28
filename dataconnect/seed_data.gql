@@ -1,0 +1,57 @@
+mutation CreateDemoData @transaction @auth(level: USER, insecureReason: "Seed data mutations are for development purposes only") {
+  user_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      displayName: "demouser1",
+      email: "demouser1@example.com",
+      userType: "entrepreneur"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      displayName: "demouser2",
+      email: "demouser2@example.com",
+      userType: "mentor"
+    }
+  ])
+  businessProfile_insertMany(data: [
+    {
+      id: "650e8400-e29b-41d4-a716-446655440000",
+      ownerId: "550e8400-e29b-41d4-a716-446655440000",
+      businessName: "Demo Business 1",
+      description: "Example business profile",
+      industry: "Technology"
+    },
+    {
+      id: "650e8400-e29b-41d4-a716-446655440001",
+      ownerId: "550e8400-e29b-41d4-a716-446655440001",
+      businessName: "Demo Business 2",
+      description: "Another example business",
+      industry: "Healthcare"
+    }
+  ])
+  mentor_insertMany(data: [
+    {
+      id: "750e8400-e29b-41d4-a716-446655440000",
+      userId: "550e8400-e29b-41d4-a716-446655440001",
+      availability: "Evenings",
+      expertiseAreas: ["Software Development", "Project Management"]
+    }
+  ])
+  project_insertMany(data: [
+    {
+      id: "850e8400-e29b-41d4-a716-446655440000",
+      businessId: "650e8400-e29b-41d4-a716-446655440000",
+      projectName: "Demo Project 1",
+      status: "In Progress"
+    }
+  ])
+  mentorshipRequest_insertMany(data: [
+    {
+      id: "950e8400-e29b-41d4-a716-446655440000",
+      entrepreneurId: "550e8400-e29b-41d4-a716-446655440000",
+      mentorId: "750e8400-e29b-41d4-a716-446655440000",
+      message: "Requesting mentorship",
+      status: "Pending"
+    }
+  ])
+}

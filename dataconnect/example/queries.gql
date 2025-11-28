@@ -1,0 +1,13 @@
+mutation CreateMentorshipRequest(
+    $mentorId: UUID!,
+    $meetingPreference: String,
+    $message: String!
+) @auth(level: USER) {
+  mentorshipRequest_insert(data: {
+    mentorId: $mentorId,
+    entrepreneurId_expr: "auth.uid",
+    message: $message,
+    status: "pending",
+    meetingPreference: $meetingPreference
+  })
+}

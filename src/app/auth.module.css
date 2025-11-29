@@ -1,0 +1,194 @@
+:root {
+  --accent-1: #50c878;
+  --accent-2: #5ac8fa;
+  --accent-3: #b18cff;
+  --danger: #f56565;
+  --success: #68d391;
+  --muted-dark: #c2cee2;
+  --muted-light: #4a5568;
+}
+
+.page {
+  --bg: radial-gradient(circle at 15% 20%, rgba(92, 113, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(54, 199, 186, 0.2), transparent 28%),
+    #0b101a;
+  --text: #e5ebf5;
+  --card-bg: #0f1826;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 18px 32px rgba(0, 0, 0, 0.45);
+  --input-bg: #121b2a;
+  --input-border: #24324a;
+  --muted: var(--muted-dark);
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.light {
+  --bg: radial-gradient(circle at 10% 20%, rgba(126, 220, 214, 0.12), transparent 30%),
+    radial-gradient(circle at 90% 0%, rgba(255, 210, 143, 0.12), transparent 25%),
+    #f7f4eb;
+  --text: #1c2433;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.05);
+  --shadow: 0 18px 32px rgba(19, 35, 60, 0.12);
+  --input-bg: #f9fbff;
+  --input-border: #d9dde5;
+  --muted: var(--muted-light);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.input {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 12px;
+  font-size: 15px;
+}
+
+.input:focus {
+  outline: 2px solid #7bc4ff;
+}
+
+.button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #0b101a;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 20px rgba(82, 117, 255, 0.25);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.googleButton {
+  background: linear-gradient(135deg, var(--accent-3), #7bc4ff);
+  color: #0b101a;
+}
+
+.themeToggle {
+  align-self: flex-end;
+  border: 1px solid var(--card-border);
+  background: linear-gradient(135deg, rgba(39, 52, 75, 0.9), rgba(26, 36, 53, 0.9));
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.light .themeToggle {
+  border: 1px solid var(--card-border);
+  background: linear-gradient(135deg, #fdfbfb, #e2ebf0);
+  color: var(--text);
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  padding: 8px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2), transparent 55%),
+    linear-gradient(135deg, #7bc4ff, #b18cff);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 18px rgba(124, 213, 255, 0.25);
+}
+
+.brandTitle {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.brandSubtitle {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.link {
+  color: #7bc4ff;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.error {
+  color: #f56565;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.success {
+  color: #68d391;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.hint {
+  color: #a0aec0;
+  font-size: 13px;
+}

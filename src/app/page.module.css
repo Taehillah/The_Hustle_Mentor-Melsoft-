@@ -335,6 +335,11 @@
   color: #4a5568;
 }
 
+.responseError {
+  color: #c53030;
+  font-weight: 700;
+}
+
 .summaryList {
   margin-top: 12px;
   display: grid;

@@ -65,6 +65,9 @@ export default function Home() {
   const [isSaving, setIsSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [aiResponse, setAiResponse] = useState("Your AI business mentor is ready to help.");
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [aiLoading, setAiLoading] = useState(false);
   const activeStage = useMemo(() => stages[activeIndex], [activeIndex]);
 
   useEffect(() => {
@@ -94,6 +97,35 @@ export default function Home() {
 
   const handlePrev = () => {
     setActiveIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const handleGuidance = async () => {
+    setAiLoading(true);
+    setAiError(null);
+    setAiResponse("Thinking...");
+    try {
+      const res = await fetch("/api/ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          stageId: activeStage.id,
+          stageTitle: activeStage.title,
+          prompt: activeStage.prompt,
+          note: notes[activeStage.id] || "",
+          previousNotes: JSON.stringify(notes),
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+      const data = (await res.json()) as { message?: string };
+      setAiResponse(data.message || "No response received.");
+    } catch (error) {
+      setAiError("Could not get AI guidance. Please try again.");
+      setAiResponse("No response.");
+    } finally {
+      setAiLoading(false);
+    }
   };
 
   const persistNotes = async (updatedNotes: Record<string, string>) => {
@@ -187,7 +219,12 @@ export default function Home() {
             }
           />
           <div className={styles.actionsRow}>
-            <button className={`${styles.button} ${styles.secondary}`} type="button">
+            <button
+              className={`${styles.button} ${styles.secondary}`}
+              type="button"
+              onClick={handleGuidance}
+              disabled={aiLoading}
+            >
               💬 Get AI Guidance
             </button>
             <button
@@ -219,11 +256,12 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.responseBox}>
-            <span className={styles.responseIcon}>💡</span>
-            <p className={styles.responseTitle}>Your AI business mentor is ready to help!</p>
-            <p className={styles.responseText}>
-              Share your thoughts and click “Get AI Guidance”
-            </p>
+            <span className={styles.responseIcon}>{aiLoading ? "⏳" : "💡"}</span>
+            {aiError ? (
+              <p className={styles.responseError}>{aiError}</p>
+            ) : (
+              <p className={styles.responseText}>{aiResponse}</p>
+            )}
           </div>
         </section>
 
